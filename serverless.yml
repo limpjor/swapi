@@ -1,0 +1,20 @@
+service: api-star-war
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+functions:
+  getfilms:
+    handler: api/getfilms
+    memorySize: 128
+    description: Films.
+    events:
+      - http: 
+          path: films
+          method: get
+
+plugins:
+  - serverless-offline

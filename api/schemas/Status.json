@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "success": {
+            "type": "boolean",
+            "description": "Indica 'true' si no hubo ningun error en la ejecución del servicio y 'false' en caso contrario"
+        },
+        "error": {
+            "type": "object",
+            "description": "",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "Código del tipo de error producido por el sistema."
+                },
+                "httpCode": {
+                    "type": "integer",
+                    "description": "Código de estado del request. Los posibles códigos son: 500 (Error Interno), 400 (Error de Validacion), 403 (Operación Prohíbida) "
+                },
+                "messages": {
+                    "type": "array",
+                    "description": "Mensajes de error relacionados al código tipo de error.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "code",
+                "httpCode",
+                "messages"
+            ]
+        }
+    },
+    "required": [
+        "success",
+        "copyright"
+    ]
+}

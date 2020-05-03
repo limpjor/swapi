@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "serviceId": {
+            "type": "string",
+            "description": "Identificador de la API, para esta API el valor será: API-CANAL.",
+            "enum": [
+                "API-CANAL"
+            ]
+        },
+        "consumerId": {
+            "type": "string",
+            "description": "Acrónimo o identificador del canal que consumirá la API."
+        },
+        "moduleId": {
+            "type": "string",
+            "description": "Acrónimo o identificador del módulo de la aplicación que consumirá la API."
+        },
+        "channelCode": {
+            "type": "string",
+            "description": "Tipo del medio por donde se invoca la API.",
+            "enum": [
+                "WEB",
+                "AWS",
+                "APP"
+            ]
+        }
+    },
+    "required": [
+        "channelCode",
+        "serviceId",
+        "consumerId"
+    ]
+}
