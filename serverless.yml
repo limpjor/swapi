@@ -5,10 +5,24 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: us-east-1
+  tracing:
+    lambda: true
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan  
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  getfilms:
-    handler: api/getfilms
+  getFilms:
+    handler: src/Controller.getFilms
     memorySize: 128
     description: Films.
     events:
@@ -16,5 +30,50 @@ functions:
           path: films
           method: get
 
+  getPeople:
+    handler: src/Controller.getPeople
+    memorySize: 128
+    description: People.
+    events:
+      - http: 
+          path: people
+          method: get
+
+  getPlanets:
+    handler: src/Controller.getPlanets
+    memorySize: 128
+    description: Planets.
+    events:
+      - http: 
+          path: planets
+          method: get
+
+  getSpecies:
+    handler: src/Controller.getSpecies
+    memorySize: 128
+    description: Species.
+    events:
+      - http: 
+          path: species
+          method: get
+
+  getStarships:
+    handler: src/Controller.getStarships
+    memorySize: 128
+    description: Starships.
+    events:
+      - http: 
+          path: starships
+          method: get
+
+  getVehicles:
+    handler: src/Controller.getVehicles
+    memorySize: 128
+    description: Vehicles.
+    events:
+      - http: 
+          path: vehicles
+          method: get
 plugins:
+  - serverless-dynamodb-local
   - serverless-offline
