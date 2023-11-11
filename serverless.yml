@@ -1,79 +1,55 @@
-service: api-star-war
+service: apistarwars
+
+frameworkVersion: "3"
+
+plugins:
+  - serverless-apigw-binary
+  - serverless-offline
+
+custom:
+  apigwBinary:
+    types:
+      - "*/*"
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
 
 provider:
   name: aws
-  runtime: nodejs12.x
-  stage: dev
+  runtime: nodejs18.x
   region: us-east-1
-  tracing:
-    lambda: true
-  environment:
-    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan  
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  getFilms:
-    handler: src/Controller.getFilms
-    memorySize: 128
-    description: Films.
+  getPlanetsSwapi:
+    handler: src/controller/SwapController.getPlanetsSwapi
     events:
-      - http: 
-          path: films
-          method: get
+      - http:
+          path: /swapi/planets/{id}
+          method: GET
 
-  getPeople:
-    handler: src/Controller.getPeople
-    memorySize: 128
-    description: People.
+  getPlanetsAws:
+    handler: src/controller/swapController.getPlanetsAws
     events:
-      - http: 
-          path: people
-          method: get
+      - http:
+          path: /aws/planets/{id}
+          method: GET
 
-  getPlanets:
-    handler: src/Controller.getPlanets
-    memorySize: 128
-    description: Planets.
+  newPlanetAws:
+    handler:  src/controller/swapController.newPlanetAws
     events:
-      - http: 
-          path: planets
-          method: get
+      - http:
+          path: /aws/new/planet
+          method: POST
 
-  getSpecies:
-    handler: src/Controller.getSpecies
-    memorySize: 128
-    description: Species.
-    events:
-      - http: 
-          path: species
-          method: get
 
-  getStarships:
-    handler: src/Controller.getStarships
-    memorySize: 128
-    description: Starships.
+  documentation:
+    handler: documentation.documentationHandler
     events:
-      - http: 
-          path: starships
-          method: get
-
-  getVehicles:
-    handler: src/Controller.getVehicles
-    memorySize: 128
-    description: Vehicles.
-    events:
-      - http: 
-          path: vehicles
-          method: get
-plugins:
-  - serverless-dynamodb-local
-  - serverless-offline
+      - http:
+          path: /documentation
+          method: GET
+          cors: true

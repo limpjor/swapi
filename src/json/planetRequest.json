@@ -1,0 +1,28 @@
+{
+  "id": "1",
+  "nombre": "C-3PO",
+  "altura": "167",
+  "masa": "75",
+  "color_cabello": "n/a",
+  "color_piel": "gold",
+  "color_ojos": "yellow",
+  "anio_nacimiento": "112BBY",
+  "sexo": "n/a",
+  "mundo_natal": "https://swapi.py4e.com/api/planets/1/",
+  "peliculas": [
+    "https://swapi.py4e.com/api/films/1/",
+    "https://swapi.py4e.com/api/films/2/",
+    "https://swapi.py4e.com/api/films/3/",
+    "https://swapi.py4e.com/api/films/4/",
+    "https://swapi.py4e.com/api/films/5/",
+    "https://swapi.py4e.com/api/films/6/"
+  ],
+  "especies": [
+    "https://swapi.py4e.com/api/species/2/"
+  ],
+  "vehiculo": [],
+  "naves_estelares": [],
+  "creado": "2014-12-10T15:10:51.357000Z",
+  "editado": "2014-12-20T21:17:50.309000Z",
+  "url": "https://swapi.py4e.com/api/people/2/"
+}

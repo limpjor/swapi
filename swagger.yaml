@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  title: API de SwapInfo
+  version: 1.0.0
+  description: Descripción de la API de SwapInfo
+
+paths:
+  /swapi/planets/{id}:
+    get:
+      summary: Obtener información de un planeta por su ID desde SWAPI
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del planeta
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                  altura:
+                    type: string
+                  masa:
+                    type: string
+                  color_cabello:
+                    type: string
+                  color_piel:
+                    type: string
+                  color_ojos:
+                    type: string
+                  anio_nacimiento:
+                    type: string
+                  sexo:
+                    type: string
+                  mundo_natal:
+                    type: string
+                    format: uri
+                  peliculas:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  especies:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  vehiculo:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  naves_estelares:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  creado:
+                    type: string
+                    format: date-time
+                  editado:
+                    type: string
+                    format: date-time
+                  url:
+                    type: string
+                    format: uri
+  /aws/planets/{id}:
+    get:
+      summary: Obtener información de un planeta por su ID desde AWS
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del planeta
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                  altura:
+                    type: string
+                  masa:
+                    type: string
+                  color_cabello:
+                    type: string
+                  color_piel:
+                    type: string
+                  color_ojos:
+                    type: string
+                  anio_nacimiento:
+                    type: string
+                  sexo:
+                    type: string
+                  mundo_natal:
+                    type: string
+                    format: uri  # Si es una URL, puedes definir el formato
+                  peliculas:
+                    type: array
+                    items:
+                      type: string
+                      format: uri  # Si son URLs, también puedes definir el formato
+                  especies:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  vehiculo:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  naves_estelares:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                  creado:
+                    type: string
+                    format: date-time  # Define el formato de fecha y hora
+                  editado:
+                    type: string
+                    format: date-time
+                  url:
+                    type: string
+                    format: uri
+  /aws/new/planet:
+    post:
+      summary: Agregar un nuevo planeta a través de AWS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Éxito
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Error del servidor
+          content:
+            application/json:
+              schema:
+                type: string
